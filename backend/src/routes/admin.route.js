@@ -4,7 +4,7 @@ import { protectRoute, requireAdmin } from "../middleware/auth.middleware.js";
 
 const router = Router();
 
-//checks if the user is logged in and is an admin before accesing the other routes
+//checks if the user is logged in and is an admin before accesing the other routes 
 router.use(protectRoute, requireAdmin);
 
 router.get("/check", checkAdmin);
