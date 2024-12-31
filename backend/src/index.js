@@ -46,3 +46,5 @@ app.listen(PORT, () => {
     console.log('Server is running on port 123 '+ PORT);
     connectDB();
 });
+
+//socket.io will be added here
