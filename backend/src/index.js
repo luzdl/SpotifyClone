@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import { clerkMiddleware } from '@clerk/express'
 import fileUpload from "express-fileupload"
 import path from 'path';
+import cors from 'cors';
 
 import {connectDB} from './lib/db.js';
 import usersRoutes from './routes/user.route.js';
@@ -18,6 +19,13 @@ const __dirname = path.resolve();
 const app = express();
 const PORT = process.env.PORT 
 
+app.use(
+    cors({
+        origin: "http://localhost:3000",
+        credentials: true,
+        })
+    );
+
 app.use(express.json()); //to parse req.body
 app.use(clerkMiddleware()); //this will add auth to req obj => req.auth
 app.use(fileUpload({
@@ -32,7 +40,7 @@ app.use(fileUpload({
 
 app.use("/api/users", usersRoutes);
 app.use("/api/admin", adminRoutes);
-app.use("/api/auth", authRoutes);
+app.use("/api/auth", authRoutes); // Ensure this line is present
 app.use("/api/songs", songRoutes);
 app.use("/api/albums", albumRoutes);
 app.use("/api/stats", statRoutes);
@@ -43,7 +51,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-    console.log('Server is running on port 123 '+ PORT);
+    console.log('Server is running on port ' + PORT);
     connectDB();
 });
 

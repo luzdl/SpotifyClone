@@ -6,6 +6,7 @@ export const getAllUsers = async (req, res, next) => {
         const users = await User.find({clerkId: {$ne: currentUserId}});
         res.status(200).json(users);
     } catch (error) {
+        console.log("Error in user.controller.js");
         next(error);
     }
 };

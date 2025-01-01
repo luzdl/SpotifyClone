@@ -10,15 +10,15 @@ export const authCallback = async (req, res) => {
         if(!user) {
             //sign up
             await User.create({
-            clerkId: id,
-            fullName: `${firstName} ${lastName}`,
-            imageUrl
+                clerkId: id,
+                fullName: `${firstName} ${lastName}`,
+                imageUrl,
             })
         }
 
         res.status(200).json({success: true})
     } catch (error) {
-        console.log("Error in auth callback", error);
+        console.log("Error in auth callback(auth.controller.js)", error);
         next(error);
     }
 };
