@@ -5,8 +5,9 @@ export interface Song {
     albumId: string | null;
     imageUrl: string;
     audioUrl: string;
-    duration: Date;
-    createdAt: Date;
+    duration: number;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface Album {
