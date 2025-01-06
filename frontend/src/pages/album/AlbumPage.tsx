@@ -22,8 +22,8 @@ const AlbumPage = () => {
     if (isLoading) return null;
 
     return (
-        <div className="h-full rounded-md">
-            <ScrollArea className="h-full">
+        <div className="h-full">
+            <ScrollArea className="h-full rounded-md overflow-hidden">
                 {/*Main Content*/}
                 <div className="relative min-h-full">
                     {/*Bg gradient*/}
