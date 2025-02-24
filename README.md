@@ -1,2 +1,2 @@
 # SpotifyClone
-Spotify cone using with MERN stack
+Spotify clone using with MERN stack
