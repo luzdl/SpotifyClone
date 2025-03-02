@@ -3,6 +3,7 @@ import { axiosInstance } from "@/lib/axios"
 import { useEffect, useState } from "react"
 import { Loader2 } from "lucide-react";
 import { useAuthStore } from "../stores/useAuthStore";
+import { useChatStore } from "@/stores/useChatStore";
 
 const updateApiToken = (token: string | null) => {
     if (token) axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -10,16 +11,21 @@ const updateApiToken = (token: string | null) => {
 }
 
 const AuthProvider = ({children}: {children: React.ReactNode}) => {
-    const {getToken, } = useAuth();
+    const {getToken, userId} = useAuth();
     const [loading, setLoading] = useState(true);
     const { checkAdminStatus } = useAuthStore();
+    const {initSocket, disconnectedSocket} = useChatStore();
 
     useEffect(() => {
         const initAuth = async () => {
             try {
                 const token = await getToken();
                 updateApiToken(token);
-                if (token) await checkAdminStatus();
+                if (token) {
+					await checkAdminStatus();
+					// init socket
+					if (userId) initSocket(userId);
+				}
             } catch (error:any) {
                 updateApiToken(null);
                 console.log("error in auth provider")
@@ -29,7 +35,9 @@ const AuthProvider = ({children}: {children: React.ReactNode}) => {
         }
 
         initAuth();
-    }, [getToken]);
+        // clean up
+		return () => disconnectedSocket();
+    }, [getToken, userId, checkAdminStatus, initSocket, disconnectedSocket]);
 
     if (loading) return (
         <div className="h-screen w-full flex items-center justify-center">
