@@ -16,7 +16,7 @@ interface ChatStore {
     disconnectedSocket: () => void;
 }
 
-const baseURL = "http://localhost:5000"
+const baseURL = import.meta.env.MODE === "development" ? "http://localhost:5000" : "/"
 
 const socket = io(baseURL, {
     autoConnect: false, //only connect if user is authenticated
