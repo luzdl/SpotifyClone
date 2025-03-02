@@ -1,6 +1,7 @@
 # 🎵 SpotifyClone
 
 Hey there! Welcome to my Spotify clone project! 🎉 This is a full-stack application that brings the magic of music streaming to life, complete with real-time social features! 
+You can access at this link https://spotifyclone-ysvk.onrender.com 
 
 ## ✨ Features
 
