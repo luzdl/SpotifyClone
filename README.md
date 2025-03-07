@@ -23,7 +23,7 @@ You can access at this link https://spotifyclone-ysvk.onrender.com
 - Express.js
 - MongoDB
 - Socket.io
-- JWT Authentication
+- Clerk Authentication
 
 ## 🌟 Architecture
 
