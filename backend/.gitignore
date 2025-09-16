@@ -1,2 +1,9 @@
 .env
 node_modules
+
+# Ignore environment files
+*.env
+*.env.local
+../frontend/.env.local
+backend/.env
+frontend/.env.local
